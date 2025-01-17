@@ -3,6 +3,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const app = express();
+const PORT = 8080;
+
 
 app.use(cors()); //Allow cors
 app.use(express.json()) //allow to parse all the incoming request to json
@@ -21,6 +23,6 @@ app.use('/newSub', newsletterSub);
 app.use('/tasks', taskList);
 app.use('/auth', auth)
 
-app.listen(8080, () => {
-    console.log(`Main app running on http://localhost:8080`);
+app.listen(PORT, () => {
+    console.log(`Main app running on http://localhost:${PORT}`);
 })
