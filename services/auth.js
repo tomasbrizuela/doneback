@@ -17,7 +17,7 @@ router.get('/userInfo', async (req, res) => {
 router.get('/:provider', async (req, res) => {
     let {provider} = req.params
     console.log("El provier es: " + provider)
-    const redirectUrl = 'http://localhost:3000/home'
+    const redirectUrl = 'https://done-nu.vercel.app/home'
     console.log("Entro en el redirect!")
     try {
         let {data, error} = await supabase.auth.signInWithOAuth({
