@@ -3,6 +3,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const app = express();
+require('dotenv').config();        // Loads environment variables from a .env file
+
 const PORT = process.env.PORT || 3000; // Use the port from environment variables or default to 3000
 
 
