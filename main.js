@@ -3,7 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT
 
 
 app.use(cors()); //Allow cors
