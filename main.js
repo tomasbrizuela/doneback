@@ -11,9 +11,9 @@ app.use(express.json()) //allow to parse all the incoming request to json
 app.use(helmet()); //Adds security-related HTTP headers
 app.use(morgan('dev'))
 
-app.get('/status', (req, res) => {
-    return res.status(200).json({"Status": "ok"})
-})
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok', message: 'System is running smoothly' });
+});
 
 const newsletterSub = require('./services/newsletter')
 const taskList = require('./services/task')
