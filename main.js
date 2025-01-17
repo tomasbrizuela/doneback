@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const port = 3030
 const app = express();
 
 app.use(cors()); //Allow cors
@@ -22,6 +21,6 @@ app.use('/newSub', newsletterSub);
 app.use('/tasks', taskList);
 app.use('/auth', auth)
 
-app.listen(port, () => {
-    console.log(`Main app running on http://localhost:${port}`);
+app.listen(8080, () => {
+    console.log(`Main app running on http://localhost:8080`);
 })
