@@ -3,19 +3,22 @@ const supabase = require('../supabase');
 const router = express.Router();
 
 router.post('/userInfo', async (req, res) => {
-    let {token} = req.headers.authorization.split(" ")[1];
+    let all = req.headers.authorization
+    let token = all.split(" ")[1];
+    console.log(all)
+    console.log(token)
     try {
         const { data: { user } } = await supabase.auth.getUser(token)
         if(user){
             console.log(user)
-            return res.status(200).json({"data": user})
+            return res.status(200).json({user})
         }
     } catch (error) {
         return res.status(400).json({"Error": error})
     }
 })
 
-router.get('/:provider', async (req, res) => {
+router.get('/provider/:provider', async (req, res) => {
     let {provider} = req.params
     console.log("El provier es: " + provider)
     const redirectUrl = 'https://done-nu.vercel.app/home'
