@@ -5,24 +5,24 @@ const router = express.Router();
 router.post('/userInfo', async (req, res) => {
     let all = req.headers.authorization
     let token = all.split(" ")[1];
-    console.log(all)
-    console.log(token)
+
     try {
+        console.log("En el try")
         const { data: { user } } = await supabase.auth.getUser(token)
-        if(user){
-            console.log(user)
-            return res.status(200).json({user})
+        if(!user){
+            return res.status(400).json({"Error":  'Invalid authorization header format'})
         }
+        console.log(user)
+        return res.status(200).json({user})
     } catch (error) {
+        console.log(error)
         return res.status(400).json({"Error": error})
     }
 })
 
 router.get('/provider/:provider', async (req, res) => {
     let {provider} = req.params
-    console.log("El provier es: " + provider)
     const redirectUrl = 'https://done-nu.vercel.app/home'
-    console.log("Entro en el redirect!")
     try {
         let {data, error} = await supabase.auth.signInWithOAuth({
             provider: provider,
@@ -33,7 +33,6 @@ router.get('/provider/:provider', async (req, res) => {
         if(error){
             return res.status(400).json({"error": error})
         }
-        console.log(data)
         res.redirect(data.url);
     } catch (e) {
         console.log(e)
